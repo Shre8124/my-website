@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Science Fun Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c2c2c;
+            color: #fff;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00c4b4;
+            margin-bottom: 2rem;
+        }
+
+        .intro, .mission {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .intro h2, .mission h2 {
+            color: #00c4b4;
+            margin-bottom: 1rem;
+        }
+
+        .intro img, .mission img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            aspect-ratio: 2 / 1;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        footer {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        body.no-animations .hero::before {
+    animation: none;
+}
+body.no-animations .experiment-card:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Default shadow */
+}
+body.no-animations .experiment-card img {
+    transition: none;
+}
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+}
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+body.header-static header {
+    position: static;
+}
+body.card-list .experiment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust based on density */
+}
+body.card-list .experiment-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+}
+body.card-list .experiment-card img {
+    width: 120px;
+    height: 80px;
+    margin-right: 1rem;
+}
+body.card-list .experiment-card h3 {
+    position: static;
+    background: none;
+    padding: 0;
+}
+/* Existing density styles */
+body.density-compact [GRID_CLASS] {
+    gap: 1rem;
+}
+
+/* Disable animations */
+body.no-animations .hero::before,
+body.no-animations .experiment-card:hover,
+body.no-animations .experiment-card img,
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+    transition: none;
+}
+
+/* Text spacing */
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+/* No changes to existing styles, just ensure these are present */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    transition: font-size 0.3s, line-height 0.3s; /* Added line-height transition */
+}
+
+/* Add hover cursor for interactive elements */
+.experiment-card,
+.cta-button,
+.toggle-btn,
+.close-btn,
+.reset-btn {
+    cursor: pointer;
+}
+    </style>
+</head>
+<body class="font-medium density-spacious animations-on text-normal sounds-on">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="logo1.png" alt="Science Fun Club Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="experiments.html">Experiments</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="settings-btn">
+                    <img src="settings.webp" alt="Settings">
+                </button>
+            </nav>
+        </div>
+    </header>
+    <div class="settings-modal">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label>Font Size</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-font="small">Small</button>
+                    <button class="toggle-btn" data-font="medium">Medium</button>
+                    <button class="toggle-btn" data-font="large">Large</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Card Density</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-density="compact">Compact</button>
+                    <button class="toggle-btn" data-density="spacious">Spacious</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Animations</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-animation="on">On</button>
+                    <button class="toggle-btn" data-animation="off">Off</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Text Spacing</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-spacing="normal">Normal</button>
+                    <button class="toggle-btn" data-spacing="relaxed">Relaxed</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Sound Effects</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-sound="on">On</button>
+                    <button class="toggle-btn" data-sound="off">Off</button>
+                </div>
+            </div>
+            <button class="reset-btn">Reset to Default</button>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+    <!-- Audio Elements -->
+<audio id="click-sound" src="534103__pbimal__mouse-click-single-00.flac" preload="auto"></audio>
+<audio id="hover-sound" src="hover.wav" preload="auto"></audio>
+
+    <!-- About Content -->
+    <section class="about-container">
+        <h1>About Science Fun Club</h1>
+
+        <!-- Introduction -->
+        <div class="intro">
+            <h2>Who We Are</h2>
+            <img src="Club.png" alt="Science Fun Club Intro">
+            <p>Welcome to the Science Fun Club! We’re a group of curious minds dedicated to making science exciting and accessible through hands-on experiments. Whether you’re a student or an educator, we’re here to spark your love for discovery.</p>
+        </div>
+
+        <!-- Mission -->
+        <div class="mission">
+            <h2>Our Mission</h2>
+            <img src="mission.jpeg" alt="Our Mission">
+            <p>Our goal is to inspire the next generation of scientists by providing fun, safe, and educational experiments. We believe science isn’t just in textbooks—it’s in the world around us, waiting to be explored!</p>
+        </div>
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Science Fun Club | Powered by PlanckPrep</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

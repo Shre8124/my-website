@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Fun Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #004d40, #1a1a1a);
+            opacity: 0.8;
+            z-index: -1;
+            animation: gradientShift 15s infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #00c4b4;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button {
+            background-color: #ffcc00;
+            color: #1a1a1a;
+            padding: 1rem 2.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e6b800;
+            transform: scale(1.05);
+        }
+
+        /* Experiment Grid */
+        .experiment-grid {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .experiment-card {
+            position: relative;
+            background-color: #2c2c2c;
+            border-radius: 15px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-mode .experiment-card {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        body.light-mode .experiment-card {
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .experiment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 196, 180, 0.5);
+        }
+
+        .experiment-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .experiment-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .experiment-card h3 {
+            padding: 1rem;
+            font-size: 1.3rem;
+            color: #00c4b4;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode footer {
+            background-color: #2c2c2c;
+        }
+
+        body.light-mode footer {
+            background-color: #fff;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        body.no-animations .hero::before {
+    animation: none;
+}
+body.no-animations .experiment-card:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Default shadow */
+}
+body.no-animations .experiment-card img {
+    transition: none;
+}
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+}
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+body.header-static header {
+    position: static;
+}
+body.card-list .experiment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust based on density */
+}
+body.card-list .experiment-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+}
+body.card-list .experiment-card img {
+    width: 120px;
+    height: 80px;
+    margin-right: 1rem;
+}
+body.card-list .experiment-card h3 {
+    position: static;
+    background: none;
+    padding: 0;
+}
+/* Existing density styles */
+body.density-compact [GRID_CLASS] {
+    gap: 1rem;
+}
+
+/* Disable animations */
+body.no-animations .hero::before,
+body.no-animations .experiment-card:hover,
+body.no-animations .experiment-card img,
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+    transition: none;
+}
+
+/* Text spacing */
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+/* No changes to existing styles, just ensure these are present */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    transition: font-size 0.3s, line-height 0.3s; /* Added line-height transition */
+}
+
+/* Add hover cursor for interactive elements */
+.experiment-card,
+.cta-button,
+.toggle-btn,
+.close-btn,
+.reset-btn {
+    cursor: pointer;
+}
+    </style>
+</head>
+<body class="font-medium density-spacious animations-on text-normal sounds-on">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="logo1.png" alt="Science Fun Club Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="experiments.html">Experiments</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="settings-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" alt="Settings">
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="settings-modal">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label>Font Size</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-font="small">Small</button>
+                    <button class="toggle-btn" data-font="medium">Medium</button>
+                    <button class="toggle-btn" data-font="large">Large</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Card Density</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-density="compact">Compact</button>
+                    <button class="toggle-btn" data-density="spacious">Spacious</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Animations</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-animation="on">On</button>
+                    <button class="toggle-btn" data-animation="off">Off</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Text Spacing</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-spacing="normal">Normal</button>
+                    <button class="toggle-btn" data-spacing="relaxed">Relaxed</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Sound Effects</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-sound="on">On</button>
+                    <button class="toggle-btn" data-sound="off">Off</button>
+                </div>
+            </div>
+            <button class="reset-btn">Reset to Default</button>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+    <!-- Audio Elements -->
+<audio id="click-sound" src="534103__pbimal__mouse-click-single-00.flac" preload="auto"></audio>
+<audio id="hover-sound" src="hover.wav" preload="auto"></audio>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Science Fun Club</h1>
+        <p>Unleash Your Curiosity with Hands-On Experiments</p>
+        <a href="experiments.html" class="cta-button">Start Exploring</a>
+    </section>
+
+    <!-- Experiment Grid -->
+    <section class="experiment-grid">
+        <a href="experiments.html#electrolyte-tester" class="experiment-card">
+            <img src="tester2.jpeg" alt="Electrolyte Tester">
+            <h3>Electrolyte Tester</h3>
+        </a>
+        <a href="experiments.html#particle-accelerator" class="experiment-card">
+            <img src="LHC.jpg" alt="Particle Accelerator">
+            <h3>Particle Accelerator</h3>
+        </a>
+        <a href="experiments.html#newtons-cradle" class="experiment-card">
+            <img src="Cradle.jpg" alt="Newton's Cradle">
+            <h3>Newton’s Cradle</h3>
+        </a>
+        <a href="experiments.html#newtons-disc" class="experiment-card">
+            <img src="disc.jpg" alt="Newton's Disc">
+            <h3>Newton’s Disc</h3>
+        </a>
+        <a href="experiments.html#lemon-battery" class="experiment-card">
+            <img src="lemon.jpg" alt="Lemon Battery">
+            <h3>Lemon Battery</h3>
+        </a>
+        <a href="experiments.html#water-fireworks" class="experiment-card">
+            <img src="water.jpg" alt="Water Fireworks">
+            <h3>Water Fireworks</h3>
+        </a>
+        <a href="experiments.html#ph-indicator" class="experiment-card">
+            <img src="ph2.jpg" alt="pH Indicator">
+            <h3>Homemade pH Indicator</h3>
+        </a>
+        <a href="experiments.html#magic-milk" class="experiment-card">
+            <img src="milk2.jpg" alt="Magic Milk">
+            <h3>Magic Milk</h3>
+        </a>
+        <a href="experiments.html#hydrogen-balloon" class="experiment-card">
+            <img src="hydrogen.jpg" alt="Hydrogen Balloon">
+            <h3>Hydrogen Balloon Explosion</h3>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Science Fun Club | Powered by PlanckPrep</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

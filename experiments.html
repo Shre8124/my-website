@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments - Science Fun Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c2c2c;
+            color: #fff;
+            padding: 0.5rem; /* Reduced padding */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px; /* Smaller logo size */
+            height: auto;
+            margin-bottom: 0.5rem; /* Reduced margin */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .experiments-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00c4b4;
+            margin-bottom: 2rem;
+        }
+
+        .filters {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background-color: #004d40;
+            color: #e0e0e0;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            margin: 0 0.5rem;
+            cursor: pointer;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #ffcc00;
+            color: #1a1a1a;
+        }
+
+        .experiment {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .experiment.active {
+            display: block;
+        }
+
+        .experiment h2 {
+            color: #00c4b4;
+            margin-bottom: 1rem;
+        }
+
+        .experiment-content {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .left-column {
+            flex: 1;
+        }
+
+        .right-column {
+            flex: 2;
+        }
+
+        .experiment img {
+            width: 100%; /* Fills container width */
+            max-width: 100%; /* Prevents overflow */
+            height: auto; /* Scales proportionally */
+            object-fit: contain; /* Crops to fit, maintaining aspect ratio */
+            aspect-ratio: 2 / 1; /* Consistent shape (adjustable) */
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .try-this {
+            background-color: #004d40;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        body.no-animations .hero::before {
+    animation: none;
+}
+body.no-animations .experiment-card:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Default shadow */
+}
+body.no-animations .experiment-card img {
+    transition: none;
+}
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+}
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+body.header-static header {
+    position: static;
+}
+body.card-list .experiment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust based on density */
+}
+body.card-list .experiment-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+}
+body.card-list .experiment-card img {
+    width: 120px;
+    height: 80px;
+    margin-right: 1rem;
+}
+body.card-list .experiment-card h3 {
+    position: static;
+    background: none;
+    padding: 0;
+}
+/* Existing density styles */
+body.density-compact [GRID_CLASS] {
+    gap: 1rem;
+}
+
+/* Disable animations */
+body.no-animations .hero::before,
+body.no-animations .experiment-card:hover,
+body.no-animations .experiment-card img,
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+    transition: none;
+}
+
+/* Text spacing */
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+/* No changes to existing styles, just ensure these are present */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    transition: font-size 0.3s, line-height 0.3s; /* Added line-height transition */
+}
+
+/* Add hover cursor for interactive elements */
+.experiment-card,
+.cta-button,
+.toggle-btn,
+.close-btn,
+.reset-btn {
+    cursor: pointer;
+}
+    </style>
+</head>
+<body class="font-medium density-spacious animations-on text-normal sounds-on">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="logo1.png" alt="Science Fun Club Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="experiments.html">Experiments</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="settings-btn">
+                    <img src="settings.webp" alt="Settings">
+                </button>
+            </nav>
+        </div>
+    </header>
+    <div class="settings-modal">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label>Font Size</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-font="small">Small</button>
+                    <button class="toggle-btn" data-font="medium">Medium</button>
+                    <button class="toggle-btn" data-font="large">Large</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Card Density</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-density="compact">Compact</button>
+                    <button class="toggle-btn" data-density="spacious">Spacious</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Animations</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-animation="on">On</button>
+                    <button class="toggle-btn" data-animation="off">Off</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Text Spacing</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-spacing="normal">Normal</button>
+                    <button class="toggle-btn" data-spacing="relaxed">Relaxed</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Sound Effects</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-sound="on">On</button>
+                    <button class="toggle-btn" data-sound="off">Off</button>
+                </div>
+            </div>
+            <button class="reset-btn">Reset to Default</button>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+    <!-- Audio Elements -->
+<audio id="click-sound" src="534103__pbimal__mouse-click-single-00.flac" preload="auto"></audio>
+<audio id="hover-sound" src="hover.wav" preload="auto"></audio>
+    <!-- Experiments Content -->
+    <section class="experiments-container">
+        <h1>Our Experiments</h1>
+        <div class="filters">
+            <button class="filter-btn" onclick="filterExperiments('all')">All</button>
+            <button class="filter-btn" onclick="filterExperiments('physics')">Physics</button>
+            <button class="filter-btn" onclick="filterExperiments('chemistry')">Chemistry</button>
+        </div>
+
+        <!-- Physics Experiments -->
+        <div class="experiment physics" id="electrolyte-tester">
+            <h2>Electrolyte Tester</h2>
+            <img src="tester2.jpeg" alt="Electrolyte Tester">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <li>The concept of electrolytes and their role in conducting electricity.</li>
+                    <li>How to differentiate between strong, weak, and non-electrolytes.</li>
+                    <li>Basic circuit connections using an Arduino and OLED display.</li>
+                    <li>How to visualize conductivity using digital output.</li>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>Battery</li>
+                        <li>Arduino board (Uno/Nano)</li>
+                        <li>OLED display (0.96-inch recommended)</li>
+                        <li>Conductivity probe or two metal electrodes (copper/stainless steel)</li>
+                        <li>JUmper Wires</li>
+                        <li>LED bulb</li>
+                        <li>Various liquids (water, saltwater, juice)</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Setup the Circuit:</li>
+                           <ul>
+                            <li>Connect the electrodes to the Arduino’s analog input through a voltage divider using resistors.</li>
+                            <li>Attach the OLED display to the Arduino using I2C connections (SDA to A4, SCL to A5 on an Uno)</li>
+                            <li>Power the circuit using a USB or battery.</li>
+                           </ul>
+                        <li>Write the Code:</li>
+                            <ul>
+                                <li>Program the Arduino to measure the voltage change when the electrodes are dipped in different solutions.</li>
+                                <li>Display messages on the OLED screen indicating whether the solution is a strong electrolyte, weak electrolyte, or non-electrolyte.</li>
+                                <li>Example: “Welcome Shreyash” scrolling until electrodes are dipped.</li>
+                            </ul>
+                        <li>Test with Solutions:</li>
+                          <ul>
+                            <li>Dip the electrodes into different liquids and observe the readings on the OLED display.</li>
+                            <li>Compare the conductivity levels for various substances.</li>
+                          </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                    <li>Electrolytes are substances that dissolve in water to produce ions, enabling electrical conductivity.</li>
+
+                    <li> Strong electrolytes (e.g., saltwater) fully dissociate into ions and conduct well.</li>
+                        
+                    <li>Weak electrolytes (e.g., vinegar) partially dissociate, leading to moderate conductivity.</li>
+                        
+                    <li>Non-electrolytes (e.g., sugar water) do not produce ions, resulting in no or minimal conductivity.</li>
+                        
+                    <li>The Arduino measures the voltage drop across the liquid, indicating its conductivity level, which is then displayed on the OLED screen.</li></ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Which liquid works best—saltwater or soda?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment physics" id="particle-accelerator">
+            <h2>Particle Accelerator</h2>
+            <img src="LHC.jpg" alt="Particle Accelerator">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How particle accelerators work (without actually breaking physics).</li>
+                        <li>The magic of electromagnetic fields in moving tiny particles at high speeds.</li>
+                        <li>Why scientists smash particles together and how it helps us understand the universe.</li>
+                        <li>How to build a tiny accelerator (without causing a black hole in your house).</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A strong neodymium magnet (but not so strong that it pulls the fridge across the room).</li>
+                        <li>Copper wire (for science, not for selling as scrap!).</li>
+                        <li>A high-voltage source (like a 9V battery—don’t worry, CERN won’t be calling).</li>
+                        <li>A small metallic bead (your very own subatomic test subject!).</li>
+                        <li>A plastic tube (to guide the particle so it doesn’t fly into your cat’s food bowl).</li>
+                        <li>A switch (for dramatic effect when powering it on).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Create the Track:</li>
+                          <ul>
+                            <li>Coil the copper wire around the plastic tube to make an electromagnetic loop.</li>
+                            <li>Connect the wire to the battery using the switch to control the power.</li>
+                          </ul>
+                        <li>Launch the Particle:</li>
+                            <ul>
+                                <li>Place the metallic bead inside the tube.</li>
+                                <Li>Activate the circuit to create an electromagnetic field, pushing the bead forward.</Li>
+                                <li>Watch in awe as your ‘particle’ speeds up (just not to light speed!).</li>
+                            </ul>
+                        <li>Observe the Madness:</li>
+                           <ul>
+                            <li>Try using different voltages to see how speed is affected.</li>
+                            <li>Add more loops and magnets to make your bead zoom faster.</li>
+                            <li>Try launching it at targets (but not at your sibling!).</li>
+                           </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>Real particle accelerators (like CERN’s Large Hadron Collider) use massive magnets and electric fields to accelerate particles to near-light speeds.</li>
+                        <li>Your mini-accelerator uses electromagnetic induction to push the metal bead forward—kind of like a maglev train but way cooler.</li>
+                        <li>This is the same principle that powers futuristic railguns, MRI machines, and, well…science fiction dreams.</li>
+                        <li>No, you won’t accidentally create a wormhole—but if your bead disappears, check under the couch.</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Can you hit multiple targets?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment physics" id="newtons-cradle">
+            <h2>Newton’s Cradle</h2>
+            <img src="Cradle.jpg" alt="Newton's Cradle">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How momentum and energy transfer work in a perfect world (and why reality is slightly messier).</li>
+                        <li>The magic of conservation laws (momentum and energy are like boomerangs—they always come back!).</li>
+                        <li>Why Newton’s Cradle never gets tired, but you do.</li>
+                        <li>How to build one and impress your friends with your newfound physics knowledge!</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>Five identical metal balls (not the ones from Grandpa’s antique clock!).</li>
+                        <li>A sturdy frame (wood, plastic, or anything that won’t collapse in shame)</li>
+                        <li>Strong string (because weak string = instant physics fail).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Build the Frame:</li>
+                           <ul>
+                            <li>Construct a simple rectangular frame tall enough to let the balls swing freely.</li>
+                           </ul>
+                        <li>Attach the Balls:</li>
+                           <ul>
+                            <li>Cut equal-length strings and attach them to the frame so that all balls hang in a perfect row.</li>
+                            <li>Make sure they barely touch each other—just like polite people in an elevator.</li>
+                           </ul>
+                        <li>Start the Chain Reaction:</li>
+                        <ul>
+                            <li>Pull one ball back and release it. Watch in amazement as the opposite ball shoots out like a physics magician’s trick!</li>
+                            <li>Try pulling back two balls. Guess what? Two balls will move on the other side. (Newton knew his stuff!)</li>
+                        </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <li>Conservation of Momentum & Energy: The reason why the balls move so predictably is that energy and momentum transfer through the stationary balls almost perfectly.</li>
+                    <li>Elastic Collisions: Since metal balls don’t absorb much energy, the force keeps bouncing back and forth like a stubborn argument.</li>
+                    <li>Friction & Air Resistance: Sadly, in the real world, energy slowly gets lost due to air resistance and imperfect materials—so your cradle won’t swing forever (unless you have a frictionless universe in your garage!).</li>
+                    <div class="try-this">
+                        <strong>Try This:</strong> What happens with two balls?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment physics" id="newtons-disc">
+            <h2>Newton’s Disc</h2>
+            <img src="disc.jpg" alt="Newton's Disc">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How white light is actually a mix of all colors (spoiler: rainbows aren’t just for aesthetics).</li>
+                        <li>The science of persistence of vision—your eyes aren’t as fast as they think they are.</li>
+                        <li>How to make colors disappear like a magic trick, but with actual physics.</li>
+                        <li>Why Newton was not just about apples and laws of motion.</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A sturdy cardboard or plastic disc (no, your mom’s kitchen plate won’t work).</li>
+                        <li>White paper and colored markers or printed color segments.</li>
+                        <li>A sharp compass or protractor (if you’re feeling fancy).</li>
+                        <li>A straw, skewer, or motor (if you want to go pro mode).</li>
+                        <li>Glue or tape (because chaos isn’t fun in DIY projects).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Create the Disc:</li>
+                          <ul>
+                            <li>Cut out a circular disc from cardboard or plastic.</li>
+                            <li>Divide it into seven equal sections and color each with a different rainbow color (VIBGYOR, or just Google it if that’s too much to remember).</li>
+                            <li>Stick it onto a firm base so it doesn’t warp mid-spin (unless you want abstract art instead of physics).</li>
+                          </ul>
+                        <li>Make it Spin:</li>
+                        <ul>
+                            <li>Pierce the center with a skewer/straw or attach it to a small motor if you like overkill.</li>
+                            <li>Give it a spin fast enough, and—boom!—all the colors merge into white.</li>
+                            <li>If it doesn’t work, spin it faster… or check if you swapped out a color for black by mistake.</li>
+                        </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>Your eyes don’t process images instantly—they lag slightly(known as persistence of vision(1/16th of a second)) (which is why fast-spinning things blur together instead of looking like a stop-motion disaster).</li>
+                        <li>White light is made of all visible colors. When the disc spins fast, your brain can’t separate the individual colors, so they blend into white.</li>
+                        <li>This is called color addition, the same principle that lets screens display every color using just red, green, and blue pixels.</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Try fewer colors—what do you see?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment physics" id="lemon-battery">
+            <h2>Lemon Battery</h2>
+            <img src="lemon.jpg" alt="Lemon Battery">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How to generate electricity using just a lemon (finally, fruit is useful for something other than juice!).</li>
+                        <li>The science behind chemical reactions and how they create electrical energy.</li>
+                        <li>Why metal combinations matter when making a battery.</li>
+                        <li>That lemons have shocking potential (bad pun, but true).</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A fresh lemon (or multiple, if you’re feeling ambitious).</li>
+                        <li>A galvanized nail (zinc-coated, not the rusty one from your backyard).</li>
+                        <li>A copper coin or strip (because pure copper > pocket change).</li>
+                        <li>Alligator clips or wires (for making the magic happen).</li>
+                        <li>A small LED or a multimeter (to check if your lemon power is legit).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Prepare the Lemon:</li>
+                          <ul>
+                            <li>Roll it on a table with slight pressure to release more juice inside (don’t smash it—this isn’t a stress ball!).</li>
+                            <li>Insert the zinc nail and the copper coin into the lemon, keeping them close but not touching (opposites attract, but not in chemistry!).</li>
+                          </ul>
+                        <li>Connect the Circuit:</li>
+                        <ul>
+                            <li>Attach one alligator clip to the zinc nail and another to the copper coin.</li>
+                            <li>Connect the free ends of the clips to an LED or multimeter.</li>
+                            <li>Watch as your lemon battery lights up or gives a voltage reading—it’s alive (well, sort of)!</li>
+                        </ul>
+                        <li>Boost the Power:</li>
+                        <ul>
+                            <li>Chain multiple lemons together by connecting copper from one to zinc of another.</li>
+                            <li>Try powering a small digital clock or buzzer. Congrats, you just made a citrus-powered gadget!</li>
+                        </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>The lemon juice acts as an electrolyte, allowing ions to flow and create an electric current.</li>
+                        <li>Zinc is more reactive than copper, so electrons move from zinc to copper, generating voltage.</li>
+                        <li>This is the same principle behind real batteries—except you won’t find “lemon-powered” gadgets in stores (yet!).</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Can you power a clock with a potato?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chemistry Experiments -->
+        <div class="experiment chemistry" id="water-fireworks">
+            <h2>Water Fireworks</h2>
+            <img src="water.jpg" alt="Water Fireworks">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How liquids of different densities interact (it’s like oil and water, but way cooler).</li>
+                        <li>The science of diffusion and why colors swirl like mini fireworks.</li>
+                        <li>Why dish soap is more than just for cleaning dirty plates.</li>
+                        <li>How to make a chemical-free fireworks show right at home.</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A clear glass or bowl filled with water (because murky water = sad science).</li>
+                        <li>Vegetable oil (because fire-free fireworks are the goal).</li>
+                        <li>Food coloring (go wild with colors!).</li>
+                        <li>A fork (for science-y mixing, not eating).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Prepare the Firework Mix:</li>
+                          <ul>
+                            <li>Pour a few tablespoons of vegetable oil into a separate small bowl.</li>
+                            <li>Add several drops of different food coloring to the oil.</li>
+                            <li>Use a fork to gently mix the colors into tiny droplets (but don’t blend it into a mess!).</li>
+                          </ul>
+                        <li>Create the Show:</li>
+                           <ul>
+                            <li>Pour the oil-and-color mixture into the clear water.</li>
+                            <li>Watch as the colors slowly sink and burst into mesmerizing patterns—like fireworks in slow motion!</li>
+                           </ul>
+                        <li>Experiment with Effects:</li>
+                        <ul>
+                            <li>Try using warm or cold water and see how it changes the diffusion speed.</li>
+                            <li>Stir the water gently to create swirling effects.</li>
+                            <li>Add a drop of dish soap and watch the colors spread even faster!</li>
+                        </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>Oil and water don’t mix: Oil floats on top because it’s less dense than water.</li>
+                        <li>Food coloring is water-based: When it sinks through the oil, it bursts into the water like tiny firework explosions.</li>
+                        <li>Diffusion at work: The color spreads naturally through the water, creating the stunning effect.</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Use different colors—what’s the coolest combo?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment chemistry" id="ph-indicator">
+            <h2>Homemade pH Indicator</h2>
+            <img src="ph2.jpg" alt="pH Indicator">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How to test acids and bases using a natural indicator (because chemicals are so last season).</li>
+                        <li>Why red cabbage is basically a built-in chemistry lab.</li>
+                        <li>The science behind pH levels and color changes.</li>
+                        <li>How to turn your kitchen into a mad scientist’s lab (minus the explosions).</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A few leaves of red cabbage (not green, unless you want disappointment).</li>
+                        <li>Hot water (for extracting the magical color-changing juice).</li>
+                        <li>A blender or knife (to chop the cabbage—no, we’re not making salad).</li>
+                        <li>Coffee filter or strainer (to separate the indicator juice).</li>
+                        <li>Clear cups or test tubes (the fancier, the better!).</li>
+                        <li>Household substances for testing: vinegar, lemon juice, baking soda, soap, soda, etc.</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Extract the pH Indicator:</li>
+                          <ul>
+                            <li>Chop the red cabbage into small pieces.</li>
+                            <li>Pour hot water over the cabbage and let it sit for 10-15 minutes.</li>
+                            <li>Strain the liquid into a cup—it should be a deep purple color. Congrats, you just made a natural pH indicator!</li>
+                          </ul>
+                        <li>Test the pH:</li>
+                          <ul>
+                            <li>Pour a little of your cabbage juice into separate clear cups.</li>
+                            <li>Add a different household substance to each cup.</li>
+                            <li>Observe the color changes like a true scientist!</li>
+                          </ul>
+                        <li>What the Colors Mean:</li>
+                          <ul>
+                            <li>Red/Pink = Acidic (Lemon juice, vinegar, soda).</li>
+                            <li>Purple = Neutral (Water, because it’s Switzerland in chemistry).</li>
+                            <li>Green/Blue = Basic (Baking soda, soap, detergent).</li>
+                          </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>Red cabbage contains anthocyanins, natural pigments that change color depending on the pH.</li>
+                        <li>In acidic solutions, they turn reddish-pink, in neutral solutions they stay purple, and in basic solutions, they shift to blue-green.</li>
+                        <li>It’s the same reason hydrangea flowers change color based on soil pH!</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Test your shampoo—what’s its pH?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment chemistry" id="magic-milk">
+            <h2>Magic Milk</h2>
+            <img src="milk2.jpg" alt="Magic Milk">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How surface tension works (and how to break it like a science rebel).</li>
+                        <li>Why soap is more than just for washing hands.</li>
+                        <li>How to create a swirling rainbow with just milk and colors.</li>
+                        <li>That playing with food can be educational (sometimes)</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A shallow dish or plate (because deep bowls are party poopers here).</li>
+                        <li>Whole milk (not water, not skim—go full fat for full effect!).</li>
+                        <li>Food coloring (more colors = more awesomeness).</li>
+                        <li>Dish soap (the hero of this experiment).</li>
+                        <li>Cotton swabs (because fingers are messy but tempting).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Prepare the Canvas:</li>
+                           <ul>
+                            <li>Pour enough milk into the dish to cover the bottom.</li>
+                            <Li>Add drops of different food coloring near the center—don’t stir yet, we’re building suspense!</Li>
+                           </ul>
+                        <li>Trigger the Magic:</li>
+                        <ul>
+                            <li>Dip a cotton swab into dish soap.</li>
+                            <li>Lightly touch the surface of the milk with the soapy swab.</li>
+                            <li>Watch in amazement as the colors shoot out and swirl around like an art masterpiece in motion!</li>
+                        </ul>
+                        <li>Experiment with Variations:</li>
+                          <ul>
+                            <li>Try different types of milk (skim, almond, heavy cream) and see which works best.</li>
+                            <li>Use different amounts of soap to test how much is needed for an explosion of color.</li>
+                            <li>Try dipping multiple soapy swabs at once—because science deserves extra chaos!</li>
+                          </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>Milk contains fats and proteins, which are affected by dish soap.</li>
+                        <li>Soap breaks surface tension and chases the fat molecules around, dragging the food coloring along for the ride.</li>
+                        <li>The swirling effect happens because soap is spreading out, dissolving fat, and pushing colors in all directions.</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Does skim milk work better than whole milk?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="experiment chemistry" id="hydrogen-balloon">
+            <h2>Hydrogen Balloon Explosion</h2>
+            <img src="hydrogen.jpg" alt="Hydrogen Balloon">
+            <div class="experiment-content">
+                <div class="left-column">
+                    <h3>What You’ll Learn</h3>
+                    <ul>
+                        <li>How to make hydrogen gas from just water (yes, really!).</li>
+                        <li>The basics of electrolysis and why water isn’t just H2O in disguise.</li>
+                        <li>How hydrogen is lighter than air (hello, science party trick!).</li>
+                        <li>Why hydrogen is used in rockets—and why you should be careful.</li>
+                    </ul>
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        <li>A glass or plastic container filled with water (tap water works, but distilled is top-tier).</li>
+                        <li>Two graphite rods (from pencil leads, not your dad’s expensive pen).</li>
+                        <li>A 9V battery and battery clips (power = progress!).</li>
+                        <li>Wires with alligator clips (for easy connections).</li>
+                        <li>A balloon (for capturing the magic gas).</li>
+                        <li>Dish soap (to make bubbles, because science should be fun).</li>
+                        <li>A long-handled lighter or candle (for the grand finale!).</li>
+                    </ul>
+                </div>
+                <div class="right-column">
+                    <h3>How to Do It</h3>
+                    <ol>
+                        <li>Set Up Electrolysis:</li>
+                          <ul>
+                            <Li>Fill the container with water and add a pinch of salt or baking soda (to improve conductivity).</Li>
+                            <li>Attach one graphite rod to the positive terminal (anode) and the other to the negative terminal (cathode) of the battery using alligator clips.</li>
+                            <li>Place both rods in the water without touching.</li>
+                            <li>Watch as bubbles start forming—oxygen at the anode, hydrogen at the cathode (spoiler: we want the hydrogen!).</li>
+                          </ul>
+                        <li>Collect the Hydrogen:</li>
+                        <ul>
+                            <li>Hold the opening of a balloon over the hydrogen-producing electrode.</li>
+                            <li>Allow the balloon to fill up (patience, young scientists!).</li>
+                            <li>Tie off the balloon carefully—you’ve just captured one of the most explosive gases known to science!</li>
+                        </ul>
+                        <li>Time for the Boom! (Safety First!)!</li>
+                           <ul>
+                            <li>Go to an open, safe outdoor area (seriously, don’t do this in your room!).</li>
+                            <li>Use a long lighter to bring a flame close to the balloon.</li>
+                            <li>Stand back and prepare for a loud pop with a mini fireball—congrats, you just created a hydrogen explosion!</li>
+                           </ul>
+                    </ol>
+                    <h3>The Science Behind It</h3>
+                    <ul>
+                        <li>Electrolysis splits H2O into hydrogen (H2) and oxygen (O2) gases using electric current.</li>
+                        <li>Hydrogen is highly flammable, meaning it reacts explosively with oxygen when ignited.</li>
+                        <li>This is the same principle used in rocket fuel—so technically, you just made a (tiny) rocket explosion!</li>
+                    </ul>
+                    <div class="try-this">
+                        <strong>Try This:</strong> Compare with a helium balloon—any difference?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Science Fun Club | Powered by PlanckPrep</p>
+    </footer>
+
+    <!-- JavaScript for Filters -->
+    <script>
+        function filterExperiments(category) {
+            const experiments = document.querySelectorAll('.experiment');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            experiments.forEach(exp => {
+                if (category === 'all') {
+                    exp.classList.add('active');
+                } else if (exp.classList.contains(category)) {
+                    exp.classList.add('active');
+                } else {
+                    exp.classList.remove('active');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            filterExperiments('all');
+            document.querySelector('.filter-btn').classList.add('active');
+        });
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>

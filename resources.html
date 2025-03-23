@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources - Science Fun Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c2c2c;
+            color: #fff;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        .resources-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00c4b4;
+            margin-bottom: 2rem;
+        }
+
+        .resource-section {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .resource-section h2 {
+            color: #00c4b4;
+            margin-bottom: 1rem;
+        }
+
+        .resource-section img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            aspect-ratio: 2 / 1;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-item {
+            background-color: #2c2c2c;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .resource-item h3 {
+            color: #ffcc00;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-item a {
+            color: #00c4b4;
+            text-decoration: none;
+        }
+
+        .resource-item a:hover {
+            text-decoration: underline;
+        }
+
+        .resource-item p {
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        body.no-animations .hero::before {
+    animation: none;
+}
+body.no-animations .experiment-card:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Default shadow */
+}
+body.no-animations .experiment-card img {
+    transition: none;
+}
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+}
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+body.header-static header {
+    position: static;
+}
+body.card-list .experiment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust based on density */
+}
+body.card-list .experiment-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+}
+body.card-list .experiment-card img {
+    width: 120px;
+    height: 80px;
+    margin-right: 1rem;
+}
+body.card-list .experiment-card h3 {
+    position: static;
+    background: none;
+    padding: 0;
+}
+/* Existing density styles */
+body.density-compact [GRID_CLASS] {
+    gap: 1rem;
+}
+
+/* Disable animations */
+body.no-animations .hero::before,
+body.no-animations .experiment-card:hover,
+body.no-animations .experiment-card img,
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+    transition: none;
+}
+
+/* Text spacing */
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+/* No changes to existing styles, just ensure these are present */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    transition: font-size 0.3s, line-height 0.3s; /* Added line-height transition */
+}
+
+/* Add hover cursor for interactive elements */
+.experiment-card,
+.cta-button,
+.toggle-btn,
+.close-btn,
+.reset-btn {
+    cursor: pointer;
+}
+    </style>
+</head>
+<body class="font-medium density-spacious animations-on text-normal sounds-on">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="logo1.png" alt="Science Fun Club Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="experiments.html">Experiments</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="settings-btn">
+                    <img src="settings.webp" alt="Settings">
+                </button>
+            </nav>
+        </div>
+    </header>
+    <div class="settings-modal">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label>Font Size</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-font="small">Small</button>
+                    <button class="toggle-btn" data-font="medium">Medium</button>
+                    <button class="toggle-btn" data-font="large">Large</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Card Density</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-density="compact">Compact</button>
+                    <button class="toggle-btn" data-density="spacious">Spacious</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Animations</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-animation="on">On</button>
+                    <button class="toggle-btn" data-animation="off">Off</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Text Spacing</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-spacing="normal">Normal</button>
+                    <button class="toggle-btn" data-spacing="relaxed">Relaxed</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Sound Effects</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-sound="on">On</button>
+                    <button class="toggle-btn" data-sound="off">Off</button>
+                </div>
+            </div>
+            <button class="reset-btn">Reset to Default</button>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+<!-- Audio Elements -->
+<audio id="click-sound" src="534103__pbimal__mouse-click-single-00.flac" preload="auto"></audio>
+<audio id="hover-sound" src="hover.wav" preload="auto"></audio>
+    <!-- Resources Content -->
+    <section class="resources-container">
+        <h1>Science Resources</h1>
+
+        <!-- Websites -->
+        <div class="resource-section">
+            <h2>Helpful Websites</h2>
+            <img src="Intro (1).png" alt="Science Websites">
+            <p>Explore these websites for more science fun and learning:</p>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Science Buddies</h3>
+                    <p><a href="https://www.sciencebuddies.org" target="_blank">sciencebuddies.org</a></p>
+                    <p>Great project ideas and resources for all ages.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Exploratorium</h3>
+                    <p><a href="https://www.exploratorium.edu" target="_blank">exploratorium.edu</a></p>
+                    <p>Interactive science exhibits and activities.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>NASA Kids’ Club</h3>
+                    <p><a href="https://www.nasa.gov/kidsclub" target="_blank">nasa.gov/kidsclub</a></p>
+                    <p>Space-themed science for young explorers.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads -->
+        <div class="resource-section">
+            <h2>Downloadable Materials</h2>
+            <img src="pdf.png" alt="Downloads">
+            <p>Grab these free resources to enhance your experiments:</p>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Workbook</h3>
+                    <p><a href="Workbook.pdf" target="_blank">Download PDF</a></p>
+                    <p>The first five correct submissions will receive:
+                        ✅ An official Science Fun Club online certificate
+                        ✅ A chance to discuss their ideas with the team
+                        ✅ A feature in next year’s edition (if your idea is cool enough!)</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Safety Checklist</h3>
+                    <p><a href="checklist.pdf" target="_blank">Download PDF</a></p>
+                    <p>Ensure safe science with this checklist.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="resource-section">
+            <h2>Recommended Tools</h2>
+            <img src="tools.png" alt="Tools">
+            <p>These tools can make your experiments even better:</p>
+            <div class="resource-list">
+                <div class="resource-item">
+                    <h3>Basic Science Kit</h3>
+                    <p><a href="https://www.amazon.in/PW-Experiment-Birthday-Experiments-Tutorials/dp/B0DFPJYP3S/ref=sr_1_1_sspa?crid=1L9M82I2TGQ3Z&dib=eyJ2IjoiMSJ9.jhojo6D91r7K8BiLxtcOvpGi6cSSG528ePWrKfwUGExnV0R7k-6N6tCFOUfj7sPnL6bdTu8fZM4ujlV6uuzHRGdv1guDSiLoXCVF2F_K2W9ku9OquqPg7rGWJsXDes8J8QsGuzPQjx-31Y0V8IsYlahK5zCljeQuLBuZjZuuG3I6zt_pqdpJMMLtz2f2zp0sO9-7IDPkYvrZZZh-WAeDcNMT5_KaYOTStVlGfuWx1uLZPTRHKUJvpqTSTJ3QBIRvmenOUjg3hOiKIGUOndIRAP9-QHcHvykLOvRa5fYx7BA.JuqqsVPsHA_CGytXF9JJMiKvWK3UbGbrNtADCsiaQnA&dib_tag=se&keywords=physics+science+kit&qid=1742722993&sprefix=physics+science+k%2Caps%2C321&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1" target="_blank">Buy Now</a></p>
+                    <p>Includes wires, LEDs, and more.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Foldable Microscope</h3>
+                    <p><a href="https://www.amazon.in/Robocraze-Foldable-Paper-Foldscope-Microscope/dp/B07RJHB6JD?th=1" target="_blank">Buy Now</a></p>
+                    <p>Perfect for close-up observations.</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Laboratory Thermometer</h3>
+                    <p><a href="https://www.amazon.in/LABAURA-mercury-thermometer-laboratory-industrial/dp/B0DV5GXRVS/ref=sr_1_3_sspa?crid=2FTIFVMUDQR1D&dib=eyJ2IjoiMSJ9.aLuxfMnGhG25-lmgt6lCWkgd0Of7_qZvkY9XuaFi5HI6CJ_55rCxoe0Js3pODDweJStJvZ10Ic6nXOjLziVisoS2ShOPhpUWj8MFWtiYkFNTPHdZG2Yp7GnoVwVE609y3sVdAxV_4rrgAD9KYGNJO1BYNQSBNsUcQv8aSdrN3TtW3xLluvhniMcJbER6kcZqh_Nr3QJ5a62ZW2Mz-5KXFyTl0zgkPGomzPP-aqjUMFXg0O15nf2bbTdZi7eM6qFJ2N47FnYjULy0XNsW_7WxqiRqjxNzgAZAjROcMe4Cp3U.tqqfr_uC-4ZmzpLimz5--mGLHg-Pm0obIMeDGV4nsGs&dib_tag=se&keywords=laboratory+thermometer&nsdOptOutParam=true&qid=1742723224&sprefix=Laboratory+%2Caps%2C338&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1" target="_blank">Buy Now</a></p>
+                    <p>Measure temperature changes easily.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Science Fun Club | Powered by PlanckPrep</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

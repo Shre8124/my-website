@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Science Fun Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        h1 {
+            color: #00c4b4;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section {
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .contact-section {
+            background-color: #333;
+        }
+
+        body.light-mode .contact-section {
+            background-color: #fff;
+        }
+
+        .contact-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .contact-button {
+            background-color: #004d40;
+            color: #e0e0e0;
+        }
+
+        body.light-mode .contact-button {
+            background-color: #e0f7fa;
+            color: #333;
+        }
+
+        .contact-button:hover {
+            background-color: #ffcc00;
+            color: #1a1a1a;
+        }
+
+        .contact-button img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode footer {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        body.light-mode footer {
+            background-color: #fff;
+            color: #333;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        body.no-animations .hero::before {
+    animation: none;
+}
+body.no-animations .experiment-card:hover {
+    transform: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Default shadow */
+}
+body.no-animations .experiment-card img {
+    transition: none;
+}
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+}
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+body.header-static header {
+    position: static;
+}
+body.card-list .experiment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Adjust based on density */
+}
+body.card-list .experiment-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    padding: 1rem;
+}
+body.card-list .experiment-card img {
+    width: 120px;
+    height: 80px;
+    margin-right: 1rem;
+}
+body.card-list .experiment-card h3 {
+    position: static;
+    background: none;
+    padding: 0;
+}
+/* Existing density styles */
+body.density-compact [GRID_CLASS] {
+    gap: 1rem;
+}
+
+/* Disable animations */
+body.no-animations .hero::before,
+body.no-animations .experiment-card:hover,
+body.no-animations .experiment-card img,
+body.no-animations .hero h1,
+body.no-animations .hero p {
+    animation: none;
+    transition: none;
+}
+
+/* Text spacing */
+body.text-normal {
+    line-height: 1.6;
+}
+body.text-relaxed {
+    line-height: 1.8;
+}
+/* No changes to existing styles, just ensure these are present */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    line-height: 1.6;
+    transition: font-size 0.3s, line-height 0.3s; /* Added line-height transition */
+}
+
+/* Add hover cursor for interactive elements */
+.experiment-card,
+.cta-button,
+.toggle-btn,
+.close-btn,
+.reset-btn {
+    cursor: pointer;
+}
+    </style>
+</head>
+<body class="font-medium density-spacious animations-on text-normal sounds-on">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <img src="logo1.png" alt="Science Fun Club Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="experiments.html">Experiments</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="settings-btn">
+                    <img src="settings.webp" alt="Settings">
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="settings-modal">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label>Font Size</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-font="small">Small</button>
+                    <button class="toggle-btn" data-font="medium">Medium</button>
+                    <button class="toggle-btn" data-font="large">Large</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Card Density</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-density="compact">Compact</button>
+                    <button class="toggle-btn" data-density="spacious">Spacious</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Animations</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-animation="on">On</button>
+                    <button class="toggle-btn" data-animation="off">Off</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Text Spacing</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-spacing="normal">Normal</button>
+                    <button class="toggle-btn" data-spacing="relaxed">Relaxed</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Sound Effects</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" data-sound="on">On</button>
+                    <button class="toggle-btn" data-sound="off">Off</button>
+                </div>
+            </div>
+            <button class="reset-btn">Reset to Default</button>
+            <button class="close-btn">Close</button>
+        </div>
+    </div>
+    <!-- Audio Elements -->
+<audio id="click-sound" src="534103__pbimal__mouse-click-single-00.flac" preload="auto"></audio>
+<audio id="hover-sound" src="hover.wav" preload="auto"></audio>
+    <!-- Contact Content -->
+    <section class="contact-container">
+        <h1>Contact me</h1>
+        <div class="contact-section">
+            <p>Have questions or want to share your science experiments? Reach out to me!</p>
+            <div class="contact-buttons">
+                <a href="https://instagram.com/shreyash_saurabh" target="_blank" class="contact-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                    Instagram
+                </a>
+                <a href="mailto:saurabhshreyash214@gmail.com" class="contact-button">
+                    <img src="https://www.google.com/gmail/about/static-2.0/images/logo-gmail.png" alt="Gmail">
+                    Gmail
+                </a>
+            </div>
+
+
+            <p style="font-family: 'Times New Roman', Times, serif;">Website created by Shreyash Saurabh</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Science Fun Club | Powered by PlanckPrep</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
